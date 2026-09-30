@@ -1,0 +1,29 @@
+// This is a simple test runner for the pediatric-icu-drug-calculator in C.
+// It runs all the unit and integration tests.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "dosage_calculator.h"
+#include "interaction_validator.h"
+#include "user_interface.h"
+
+int main() {
+    int result;
+
+    // Run unit tests
+    result = system("make check-unit");
+    if (result != 0) {
+        printf("Unit tests failed.\n");
+        return 1;
+    }
+
+    // Run integration tests
+    result = system("make check-integration");
+    if (result != 0) {
+        printf("Integration tests failed.\n");
+        return 1;
+    }
+
+    printf("All tests passed.\n");
+    return 0;
+}

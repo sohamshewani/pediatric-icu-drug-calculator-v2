@@ -1,0 +1,36 @@
+// main.c - The entry point for the pediatric-ICU-drug-calculator.
+
+#include <stdio.h>
+#include "user_interface.h"
+#include "dosage_calculator.h"
+#include "interaction_validator.h"
+
+int main() {
+    user_interface_t interface;
+    int choice;
+
+    user_interface_init(&interface);
+
+    do {
+        printf("\n1. Calculate Dosage\n2. Validate Drug Interaction\n3. Exit\n\nEnter your choice: ");
+        scanf("%d", &choice);
+
+        switch (choice) {
+            case 1:
+                dosage_calculator(&interface);
+                break;
+            case 2:
+                interaction_validator(&interface);
+                break;
+            case 3:
+                printf("Exiting the program.\n");
+                break;
+            default:
+                printf("Invalid choice. Please try again.\n");
+        }
+    } while (choice != 3);
+
+    user_interface_destroy(&interface);
+
+    return 0;
+}
